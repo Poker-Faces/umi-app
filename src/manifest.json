@@ -1,6 +1,6 @@
 {
-  "name": "Ant Design Pro",
-  "short_name": "Ant Design Pro",
+  "name": "北京霍远电力监控平台",
+  "short_name": "北京霍远",
   "display": "standalone",
   "start_url": "./?utm_source=homescreen",
   "theme_color": "#002140",

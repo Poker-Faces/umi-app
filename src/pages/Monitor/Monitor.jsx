@@ -1,6 +1,7 @@
 import React, { Component, Suspense } from 'react';
 import { Card, Col, Icon, Row, Tabs, Tooltip, Empty, Button } from 'antd';
 import { Line } from '@/components/Charts';
+import { getServerPath } from '@/utils/utils';
 import styles from '../Data/Analysis.less';
 
 const { TabPane } = Tabs;
@@ -8,7 +9,7 @@ const { TabPane } = Tabs;
 class Monitor extends Component {
   constructor(props) {
     super(props);
-    this.socket = new WebSocket('ws://39.105.14.244:9013/ws/monitor');
+    this.socket = new WebSocket(`${getServerPath().wsServer}/ws/monitor`);
     this.state = {
       // formData: "一小时",
       socketData: {

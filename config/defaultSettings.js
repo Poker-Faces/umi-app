@@ -10,7 +10,7 @@ export default {
   menu: {
     locale: true,
   },
-  title: 'Ant Design Pro',
+  title: '北京霍远电力监控平台',
   pwa: false,
   iconfontUrl: '',
 };

@@ -21,4 +21,20 @@ const isAntDesignProOrDev = () => {
   return isAntDesignPro();
 };
 
+// 根据环境获取服务器地址
+export function getServerPath() {
+  const env = process.env.API_ENV;
+  const server = {
+    apiServer: '127.0.0.1', wsServer: 'ws://127.0.0.1',
+  };
+  if (env === 'test') {
+    server.wsServer = 'ws://39.105.129.167:9013';
+  } else if (env === 'development') {
+    server.wsServer = 'ws://39.105.14.244:9013';
+  } else {
+    server.wsServer = 'ws://39.105.129.167:9013';
+  }
+  return server;
+}
+
 export { isAntDesignProOrDev, isAntDesignPro, isUrl };
