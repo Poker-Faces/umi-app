@@ -10,8 +10,8 @@ import {
 import DataSet from '@antv/data-set';
 import styles from './Analysis.less';
 import TableList from '@/components/TableList/TableList.less';
-// import { Bar } from '../../components/Charts';
-import { getDataCharts } from '../../services/message';
+import { Bar } from '@/components/Charts';
+import { getDataCharts } from '@/services/message';
 
 
 const { Option } = Select;
@@ -144,20 +144,20 @@ class Statistics extends Component {
             </Col>
             <Col xl={12} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesBar}>
-                {/*<Bar*/}
-                {/*  height={292}*/}
-                {/*  title={date1}*/}
-                {/*  data={data.userCharts}*/}
-                {/*/>*/}
+                <Bar
+                  height={292}
+                  title={date1}
+                  data={data.userCharts}
+                />
               </div>
             </Col>
             <Col xl={12} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesBar}>
-                {/*<Bar*/}
-                {/*  height={292}*/}
-                {/*  title={date2}*/}
-                {/*  data={data.deviceCharts}*/}
-                {/*/>*/}
+                <Bar
+                  height={292}
+                  title={date2}
+                  data={data.deviceCharts}
+                />
               </div>
             </Col>
           </Row>

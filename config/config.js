@@ -126,7 +126,7 @@ export default {
   chainWebpack: webpackPlugin,
   proxy: {
     '/admin': {
-      target: 'http://192.168.0.107:9013/',
+      target: 'http://hop.ipgogo.com/',
       changeOrigin: true,
       pathRewrite: { '^/admin': '/admin' },
     },
