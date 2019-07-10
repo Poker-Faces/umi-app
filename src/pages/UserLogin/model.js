@@ -10,12 +10,16 @@ const Model = {
   effects: {
     *login({ payload }, { call, put }) {
       const response = yield call(fakeAccountLogin, payload);
+      let data = response;
+      if (data && data.data) {
+        data = response.data.userInfo;
+        data.status = response.status;
+      }
       yield put({
         type: 'changeLoginStatus',
-        payload: response,
+        payload: data,
       }); // Login successfully
-
-      if (response.status === 'ok') {
+      if (data.status === 200) {
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         let { redirect } = params;
@@ -38,15 +42,16 @@ const Model = {
         yield put(routerRedux.replace(redirect || '/'));
       }
     },
-
+    // 获取验证码
     *getCaptcha({ payload }, { call }) {
       yield call(getFakeCaptcha, payload);
     },
   },
   reducers: {
     changeLoginStatus(state, { payload }) {
+      localStorage.setItem('token', payload.token);
       setAuthority(payload.currentAuthority);
-      return { ...state, status: payload.status, type: payload.type };
+      return { ...state, status: payload.status, type: payload.type || 'account' };
     },
   },
 };

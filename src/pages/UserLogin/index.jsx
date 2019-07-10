@@ -81,7 +81,7 @@ class UserLogin extends Component {
     const { status, type: loginType } = userLogin;
     const { type, autoLogin } = this.state;
     return (
-      <div className={styles.main}>
+      <div className={styles.main} style={{ paddingTop: 200 }}>
         <LoginComponents
           defaultActiveKey={type}
           onTabChange={this.onTabChange}
@@ -90,134 +90,61 @@ class UserLogin extends Component {
             this.loginForm = form;
           }}
         >
-          <Tab
-            key="account"
-            tab={formatMessage({
-              id: 'userlogin.login.tab-login-credentials',
-            })}
-          >
-            {status === 'error' &&
-              loginType === 'account' &&
-              !submitting &&
-              this.renderMessage(
-                formatMessage({
-                  id: 'userlogin.login.message-invalid-credentials',
+          {status !== 200 &&
+          loginType === 'account' &&
+          !submitting &&
+          this.renderMessage(
+            formatMessage({
+              id: 'userlogin.login.message-invalid-credentials',
+            }),
+          )}
+          <UserName
+            name="userName"
+            placeholder={`${formatMessage({
+              id: 'userlogin.login.userName',
+            })}`}
+            rules={[
+              {
+                required: true,
+                message: formatMessage({
+                  id: 'userlogin.userName.required',
                 }),
-              )}
-            <UserName
-              name="userName"
-              placeholder={`${formatMessage({
-                id: 'userlogin.login.userName',
-              })}: admin or user`}
-              rules={[
-                {
-                  required: true,
-                  message: formatMessage({
-                    id: 'userlogin.userName.required',
-                  }),
-                },
-              ]}
-            />
-            <Password
-              name="password"
-              placeholder={`${formatMessage({
-                id: 'userlogin.login.password',
-              })}: ant.design`}
-              rules={[
-                {
-                  required: true,
-                  message: formatMessage({
-                    id: 'userlogin.password.required',
-                  }),
-                },
-              ]}
-              onPressEnter={() =>
-                this.loginForm && this.loginForm.validateFields(this.handleSubmit)
-              }
-            />
-          </Tab>
-          <Tab
-            key="mobile"
-            tab={formatMessage({
-              id: 'userlogin.login.tab-login-mobile',
-            })}
-          >
-            {status === 'error' &&
-              loginType === 'mobile' &&
-              !submitting &&
-              this.renderMessage(
-                formatMessage({
-                  id: 'userlogin.login.message-invalid-verification-code',
+              },
+            ]}
+          />
+          <Password
+            name="password"
+            placeholder={`${formatMessage({
+              id: 'userlogin.login.password',
+            })}`}
+            rules={[
+              {
+                required: true,
+                message: formatMessage({
+                  id: 'userlogin.password.required',
                 }),
-              )}
-            <Mobile
-              name="mobile"
-              placeholder={formatMessage({
-                id: 'userlogin.phone-number.placeholder',
-              })}
-              rules={[
-                {
-                  required: true,
-                  message: formatMessage({
-                    id: 'userlogin.phone-number.required',
-                  }),
-                },
-                {
-                  pattern: /^1\d{10}$/,
-                  message: formatMessage({
-                    id: 'userlogin.phone-number.wrong-format',
-                  }),
-                },
-              ]}
-            />
-            <Captcha
-              name="captcha"
-              placeholder={formatMessage({
-                id: 'userlogin.verification-code.placeholder',
-              })}
-              countDown={120}
-              onGetCaptcha={this.onGetCaptcha}
-              getCaptchaButtonText={formatMessage({
-                id: 'userlogin.form.get-captcha',
-              })}
-              getCaptchaSecondText={formatMessage({
-                id: 'userlogin.captcha.second',
-              })}
-              rules={[
-                {
-                  required: true,
-                  message: formatMessage({
-                    id: 'userlogin.verification-code.required',
-                  }),
-                },
-              ]}
-            />
-          </Tab>
-          <div>
-            <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
-              <FormattedMessage id="userlogin.login.remember-me" />
-            </Checkbox>
-            <a
-              style={{
-                float: 'right',
-              }}
-              href=""
-            >
-              <FormattedMessage id="userlogin.login.forgot-password" />
-            </a>
-          </div>
+              },
+            ]}
+            onPressEnter={() =>
+              this.loginForm && this.loginForm.validateFields(this.handleSubmit)
+            }
+          />
+          {/* <div> */}
+          {/*  <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}> */}
+          {/*    <FormattedMessage id="userlogin.login.remember-me"/> */}
+          {/*  </Checkbox> */}
+          {/*  <a */}
+          {/*    style={{ */}
+          {/*      float: 'right', */}
+          {/*    }} */}
+          {/*    href="" */}
+          {/*  > */}
+          {/*    <FormattedMessage id="userlogin.login.forgot-password"/> */}
+          {/*  </a> */}
+          {/* </div> */}
           <Submit loading={submitting}>
-            <FormattedMessage id="userlogin.login.login" />
+            <FormattedMessage id="userlogin.login.login"/>
           </Submit>
-          <div className={styles.other}>
-            <FormattedMessage id="userlogin.login.sign-in-with" />
-            <Icon type="alipay-circle" className={styles.icon} theme="outlined" />
-            <Icon type="taobao-circle" className={styles.icon} theme="outlined" />
-            <Icon type="weibo-circle" className={styles.icon} theme="outlined" />
-            <Link className={styles.register} to="/user/register">
-              <FormattedMessage id="userlogin.login.signup" />
-            </Link>
-          </div>
         </LoginComponents>
       </div>
     );

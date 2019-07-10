@@ -65,7 +65,7 @@ request.interceptors.response.use(async response => {
         message: `错误代码 : ${data.status}`,
         description: data.message,
       });
-      throw new Error(data.message);
+      // throw new Error(data.message);
     }
   }
   return response;

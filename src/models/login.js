@@ -22,6 +22,7 @@ const Model = {
             }),
           }),
         );
+        localStorage.clear();
       }
     },
   },

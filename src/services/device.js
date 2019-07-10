@@ -99,3 +99,7 @@ export async function uploadData(params) {
 export async function getRealtimeData(params) {
   return request(`/admin/device/get/data?${stringify(params)}`);
 }
+
+export async function queryOTAList() {
+  return request('/admin/device/list');
+}
