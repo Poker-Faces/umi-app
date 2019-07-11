@@ -126,6 +126,9 @@ export default {
   manifest: {
     basePath: '/',
   },
+  // exportStatic: {
+  //   htmlSuffix: true,
+  // },
   chainWebpack: webpackPlugin,
   proxy: {
     '/admin': {

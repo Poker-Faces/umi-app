@@ -10,7 +10,7 @@ import { connect } from 'dva';
 import { formatMessage } from 'umi-plugin-react/locale';
 import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo.png';
 
 /**
  * use Authorized check all menu item
