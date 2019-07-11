@@ -12,7 +12,7 @@ const Model = {
   effects: {
     *logout(_, { put }) {
       const { redirect } = getPageQuery(); // redirect
-
+      localStorage.clear();
       if (window.location.pathname !== '/user/login' && !redirect) {
         yield put(
           routerRedux.replace({
@@ -22,7 +22,7 @@ const Model = {
             }),
           }),
         );
-        localStorage.clear();
+        window.location.reload();
       }
     },
   },

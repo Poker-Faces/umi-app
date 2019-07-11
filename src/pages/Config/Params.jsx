@@ -101,7 +101,9 @@ class Params extends Component {
       editModalVisible: flag,
       editFormValues: record || {},
     });
-    this.refreshPage();
+    if (!flag) {
+      this.refreshPage();
+    }
   };
 
   /**

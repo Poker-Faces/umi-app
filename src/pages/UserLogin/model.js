@@ -1,6 +1,7 @@
 import { routerRedux } from 'dva/router';
 import { fakeAccountLogin, getFakeCaptcha } from './service';
 import { getPageQuery, setAuthority } from './utils/utils';
+import { setToken } from '@/utils/utils';
 
 const Model = {
   namespace: 'userLogin',
@@ -40,6 +41,8 @@ const Model = {
         }
 
         yield put(routerRedux.replace(redirect || '/'));
+        // 强刷一下页面，不让登录成功后取不到localStorage
+        window.location.reload(redirect || '/');
       }
     },
     // 获取验证码
@@ -49,7 +52,7 @@ const Model = {
   },
   reducers: {
     changeLoginStatus(state, { payload }) {
-      localStorage.setItem('token', payload.token);
+      setToken(payload.token); // 设置用户token
       setAuthority(payload.currentAuthority);
       return { ...state, status: payload.status, type: payload.type || 'account' };
     },

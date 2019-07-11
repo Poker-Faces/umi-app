@@ -3,8 +3,19 @@
  * 更详细的 api 文档: https://github.com/umijs/umi-request
  */
 import { extend } from 'umi-request';
-import { notification, message } from 'antd';
+import { notification } from 'antd';
 import router from 'umi/router';
+import { getToken } from './utils';
+
+// 用户token
+const setDefaultParams = () => {
+  const param = {};
+  const token = getToken('token');
+  if (token) {
+    param.token = token;
+  }
+  return param;
+};
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -48,11 +59,11 @@ const request = extend({
   errorHandler,
   timeout: 1000 * 10, // 默认超时时间10秒
   credentials: 'include', // 默认请求是否带上cookie
-  params: { token: localStorage.getItem('token') }, // 始终带上的参数
+  params: setDefaultParams(), // 始终带上的参数
 });
 
 /**
- * 对于状态码实际是 200 的错误, 业务上的错误
+ * 对于状态码实际是 200 的, 业务上的错误
  */
 request.interceptors.response.use(async response => {
   const data = await response.clone().json();

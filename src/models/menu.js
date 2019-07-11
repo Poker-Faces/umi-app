@@ -10,7 +10,7 @@ const MenuModel = {
       const response = yield call(getRouters);
       yield put({
         type: 'saveRouters',
-        payload: response.data.routers,
+        payload: response.data ? response.data.routers : [],
       });
     },
   },

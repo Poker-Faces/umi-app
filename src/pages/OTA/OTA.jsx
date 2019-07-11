@@ -84,7 +84,6 @@ class OTA extends Component {
   componentDidMount = () => {
     queryOTAList('2').then(
       data => {
-        console.log(data);
         const dataList = {
         };
         this.setState({
@@ -94,7 +93,7 @@ class OTA extends Component {
       },
       err => {
         throw new Error(err);
-      }
+      },
     );
   };
 
@@ -110,7 +109,7 @@ class OTA extends Component {
     } = this.state;
     return (
       <div>
-        <Card  bordered={false}>
+        <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>
               <Button

@@ -146,7 +146,9 @@ class UserConfig extends Component {
       editModalVisible: flag,
       userInfo,
     });
-    this.refreshPage();
+    if (!flag) {
+      this.refreshPage();
+    }
   };
 
   /**
